@@ -1,4 +1,7 @@
-﻿public class Word
+﻿
+using System;
+
+public class Word
 {
    public bool Active = true;
    public readonly string WordBY;
@@ -19,11 +22,11 @@
 
    private void AnswerActions(bool Correct)
    {
-      int answer = Correct ? 1 : 0;
+      int answer = Correct ? 1 : (int)-Math.Sqrt(WordLvl * 10.0);
       _exp += (sbyte)answer;
-      if (_exp > 40) _exp--;
-      if (_exp < 0) _exp++;
-      WordLvl = (sbyte)(_exp % 10 + 1);
+      if (_exp > 40) _exp = 40;
+      if (_exp < 0) _exp = 0;
+      WordLvl = (sbyte)(_exp / 10 + 1);
    }
    public void RightAnswer()
    {

@@ -19,7 +19,10 @@ static class WordsManager
          Words = JsonSerializer.Deserialize<Word[]>(fs, _option);
       }
    }
-   public static async void WordsToJsonAsync()
+   /// <summary>
+   /// Saves words state to Words.Json
+   /// </summary>
+   public static async void SaveAsync()
    {
       using (FileStream fs = new FileStream("Words.json", FileMode.OpenOrCreate))
       {
@@ -30,6 +33,6 @@ static class WordsManager
    {
       Words[0] = new Word("кудзеркі", "кудряшки", "Завивающийся тип волос", 0);
       Words[1] = new Word("сланечнік", "подсолнух", "Цветок с желтыми листями, из него получают семечки", 1);
-      WordsToJsonAsync();
+      SaveAsync();
    }
 }  
