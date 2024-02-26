@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://3werb5wgyvhg"]
+
+[ext_resource type="Script" path="res://TextToType.cs" id="1_grngu"]
+
+[node name="Text" type="Node2D"]
+
+[node name="TextToType" type="TextEdit" parent="."]
+offset_right = 234.0
+offset_bottom = 89.0
+script = ExtResource("1_grngu")
