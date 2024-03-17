@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnqyehh2inxmv"]
+
+[ext_resource type="Script" path="res://InputResponse.cs" id="1_35fjl"]
+
+[node name="InputResponse" type="VBoxContainer"]
+script = ExtResource("1_35fjl")
+
+[node name="History" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.443137, 0.443137, 0.443137, 1)
+theme_override_font_sizes/font_size = 35
+text = "amogus"
+
+[node name="WhatToType" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "amogi"
