@@ -10,7 +10,7 @@ public partial class Game : Control
 	Node InputHistory;
 	PackedScene InputResponse;
    private Random _random = new Random();
-
+   private string _word;
 
    public override void _Ready()
 	{
@@ -19,8 +19,7 @@ public partial class Game : Control
       var init = GetNode(@"BackGround/MarginContainer/Rows/GameInfo/ScrollContainer/History/WhatToType");
       CurrentWord = GetWord();
 
-      string word = RuOrBy ? CurrentWord.WordBY : CurrentWord.Translation;
-      init.Call("SetText", word);
+      init.Call("SetText", _word);
    }
 
    public Word GetWord()
@@ -35,16 +34,44 @@ public partial class Game : Control
       if (random == 1) RuOrBy = true;
       else RuOrBy = false;
       GD.Print(random);
+      _word = RuOrBy ? word.WordBY : word.Translation;
       return word;
    }
    
-   private void CheckAnswer()
+   
+   private string needWord()
    {
-
+      if(RuOrBy)
+         return CurrentWord.Translation.ToLower();
+      else
+         return CurrentWord.WordBY;
    }
 	private void OnTextEnter(string text)
 	{
+      string response;
+      string trueAnswer = needWord();
+      string needAnswer = trueAnswer.Replace('і', 'и').ToLower().Replace('ў', 'у');
+      var filteredAnswer = text.Replace('і', 'и').ToLower().Replace('ў', 'у');
+      if (filteredAnswer.Equals(needAnswer))
+      {
+         response = " ✓ " + trueAnswer;
+         CurrentWord.RightAnswer();
+
+      }
+      else
+      {
+         response = " ✗ " + text + " ✓ " + trueAnswer;
+         CurrentWord.WrongAnswer();
+      }
       var inputResponse = InputResponse.Instantiate();
+      CurrentWord = GetWord();
+      string word = RuOrBy ? CurrentWord.WordBY : CurrentWord.Translation;
+      inputResponse.Call("SetText", word,response);
 		InputHistory.AddChild(inputResponse);
 	}
+
+   private void OnClosing()
+   {
+      WordsManager.SaveAsync();
+   }
 }

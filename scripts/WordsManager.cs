@@ -18,6 +18,7 @@ static class WordsManager
       {
          Words = JsonSerializer.Deserialize<Word[]>(fs, _option);
       }
+      if (Words == null) Reset();
    }
    /// <summary>
    /// Saves words state to Words.Json
@@ -31,8 +32,11 @@ static class WordsManager
    }
    public static void Reset()
    {
-      Words[0] = new Word("кудзеркі", "кудряшки", "Завивающийся тип волос", 0);
-      Words[1] = new Word("сланечнік", "подсолнух", "Цветок с желтыми листями, из него получают семечки", 1);
+      int i = 0;
+      Words[i] = new Word("кудзеркі", "кудряшки", "Завивающийся тип волос", i);
+      i++;
+      Words[i] = new Word("сланечнік", "подсолнух", "Цветок с желтыми листями, из него получают семечки", i);
+      i++;
       SaveAsync();
    }
 }  

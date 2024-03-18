@@ -68,5 +68,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_yfh1h")
 layout_mode = 2
 script = ExtResource("1_l4ltv")
 
+[connection signal="tree_exiting" from="." to="." method="OnClosing"]
 [connection signal="text_submitted" from="BackGround/MarginContainer/Rows/InputArea/LineEdit" to="." method="OnTextEnter"]
 [connection signal="text_submitted" from="BackGround/MarginContainer/Rows/InputArea/LineEdit" to="BackGround/MarginContainer/Rows/InputArea/LineEdit" method="OnTextEnter"]
