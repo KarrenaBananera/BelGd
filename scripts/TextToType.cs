@@ -19,7 +19,7 @@ public partial class TextToType : TextEdit
 	public Word GetWord()
 	{
 		var random = new Random();
-		var word = WordsManager.Words[random.Next(WordsManager.Words.Length)];
+		var word = WordsManager.Words[random.Next(WordsManager.Words.Count)] ;
 		var chance = random.Next(100);
 		var needChance = 100 - word.WordLvl * 12;
 		var activeFactor = word.Active ? 1 : 10000;

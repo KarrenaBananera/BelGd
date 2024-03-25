@@ -10,15 +10,22 @@ using System.IO;
 static class WordsManager
 {
    private static JsonSerializerOptions _option = new JsonSerializerOptions { IncludeFields = true };
-   public static Word[] Words = new Word[2];
+   public static List<Word> Words = new(20);
 
    static WordsManager()
    {
-      using (FileStream fs = new FileStream("Words.json", FileMode.OpenOrCreate))
+      try
       {
-         Words = JsonSerializer.Deserialize<Word[]>(fs, _option);
+         using (FileStream fs = new FileStream("Words.json", FileMode.OpenOrCreate))
+         {
+            Words = JsonSerializer.Deserialize<List<Word>>(fs, _option);
+         }
+         if (Words == null) Reset();
+
       }
-      if (Words == null) Reset();
+      catch { 
+         Reset();
+            }
    }
    /// <summary>
    /// Saves words state to Words.Json
@@ -27,16 +34,40 @@ static class WordsManager
    {
       using (FileStream fs = new FileStream("Words.json", FileMode.OpenOrCreate))
       {
-          await JsonSerializer.SerializeAsync<Word[]>(fs, Words,_option);
+          await JsonSerializer.SerializeAsync<List<Word>>(fs, Words,_option);
+      }
+   }
+   public static void Save()
+   {
+      using (FileStream fs = new FileStream("Words.json", FileMode.OpenOrCreate))
+      {
+         JsonSerializer.Serialize<List<Word>>(fs, Words, _option);
       }
    }
    public static void Reset()
    {
-      int i = 0;
-      Words[i] = new Word("кудзеркі", "кудряшки", "Завивающийся тип волос", i);
-      i++;
-      Words[i] = new Word("сланечнік", "подсолнух", "Цветок с желтыми листями, из него получают семечки", i);
-      i++;
-      SaveAsync();
+      Words.Add(new Word("сланечнік", "подсолнух"));
+      Words.Add(new Word("бульба", "картофель"));
+      Words.Add(new Word("ажына", "ежевика"));
+      Words.Add(new Word("суніца", "земляника"));
+      Words.Add(new Word("алешына", "ольха"));
+      Words.Add(new Word("папараць-кветка", "папоротник"));
+      Words.Add(new Word("хвоя", "сосна"));
+      Words.Add(new Word("ружа", "роза"));
+      Words.Add(new Word("касач", "ирис"));
+      Words.Add(new Word("вярба", "ива"));
+      Words.Add(new Word("таполя", "тополь"));
+      Words.Add(new Word("шыпшына", "шиповник"));
+      Words.Add(new Word("чарніца", "черника"));
+      Words.Add(new Word("парэчка", "смородина"));
+      Words.Add(new Word("чаромха", "черёмуха"));
+      Words.Add(new Word("бэз", "сирень"));
+      Words.Add(new Word("трыпутнік", "подорожник"));
+      Words.Add(new Word("старасцень", "крестовник"));
+      Words.Add(new Word("казялец", "лютик"));
+      Words.Add(new Word("падбел", "мать-и-мачеха"));
+      Words.Add(new Word("рамон", "ромашка"));
+      Words.Add(new Word("крываўнік", "тысячелистник"));
+      Save();
    }
 }  

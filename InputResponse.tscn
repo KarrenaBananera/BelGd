@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://cnqyehh2inxmv"]
 
-[ext_resource type="Script" path="res://InputResponse.cs" id="1_35fjl"]
+[ext_resource type="Script" path="res://scripts/InputResponse.cs" id="1_k5jkt"]
 
 [node name="InputResponse" type="VBoxContainer"]
-script = ExtResource("1_35fjl")
+script = ExtResource("1_k5jkt")
 
 [node name="History" type="Label" parent="."]
 layout_mode = 2

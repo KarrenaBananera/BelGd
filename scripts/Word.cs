@@ -12,12 +12,12 @@ public class Word
    public sbyte _exp { get; private set; } = 0;
 
 
-   public Word(string WordBy, string translation, string description, int number)
+   public Word(string WordBy, string translation)
    {
       WordBY = WordBy;
       Translation = translation;
-      Description = description;
-      Number = number;
+      Description = "";
+      Number = 0;
    }
 
    private void AnswerActions(bool Correct)

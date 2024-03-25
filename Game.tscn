@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://cp5kij1ygnb7i"]
 
+[ext_resource type="Script" path="res://scripts/Game.cs" id="1_f7hpw"]
 [ext_resource type="Script" path="res://scripts/LineEdit.cs" id="1_l4ltv"]
-[ext_resource type="Script" path="res://Game.cs" id="1_u10ld"]
-[ext_resource type="Script" path="res://FirstNode.cs" id="2_2fke0"]
+[ext_resource type="Script" path="res://scripts/FirstNode.cs" id="2_xw3ow"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dccug"]
 bg_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
@@ -20,7 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_u10ld")
+script = ExtResource("1_f7hpw")
 
 [node name="BackGround" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -49,6 +49,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_f2x5a")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="BackGround/MarginContainer/Rows/GameInfo"]
 layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
 
 [node name="History" type="VBoxContainer" parent="BackGround/MarginContainer/Rows/GameInfo/ScrollContainer"]
 layout_mode = 2
@@ -57,7 +59,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "amogi"
-script = ExtResource("2_2fke0")
+script = ExtResource("2_xw3ow")
 
 [node name="InputArea" type="PanelContainer" parent="BackGround/MarginContainer/Rows"]
 custom_minimum_size = Vector2(0, 60)
@@ -66,6 +68,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_yfh1h")
 
 [node name="LineEdit" type="LineEdit" parent="BackGround/MarginContainer/Rows/InputArea"]
 layout_mode = 2
+max_length = 20
 script = ExtResource("1_l4ltv")
 
 [connection signal="tree_exiting" from="." to="." method="OnClosing"]
